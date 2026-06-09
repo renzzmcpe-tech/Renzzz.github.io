@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCI </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        utama: '#6D28D9',
+                        aksen: '#EC4899',
+                        gelap: '#0F172A',
+                        terang: '#F8FAFC',
+                        ungu: '#8B5CF6',
+                        merah: '#EF4444',
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-3d {
+                text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+            }
+            .text-glow {
+                text-shadow: 0 0 10px #8B5CF6, 0 0 20px #8B5CF6, 0 0 30px #EC4899, 0 0 40px #EC4899;
+            }
+            .bg-animasi {
+                background: linear-gradient(-45deg, #6D28D9, #8B5CF6, #EC4899, #EF4444);
+                background-size: 400% 400%;
+                animation: gradasiGerak 15s ease infinite;
+            }
+            .bg-animasi-hitam {
+                background: linear-gradient(-45deg, #0F172A, #1E293B, #312E81, #4C1D95);
+                background-size: 400% 400%;
+                animation: gradasiGerak 15s ease infinite;
+            }
+            .partikel {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                animation: jatuh 5s linear infinite;
+            }
+            .kartu-efek {
+                box-shadow: 0 0 30px rgba(139, 92, 246, 0.4), 0 0 60px rgba(236, 72, 153, 0.2);
+                backdrop-filter: blur(10px);
+            }
+            @keyframes gradasiGerak {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+            @keyframes jatuh {
+                0% { transform: translateY(-10px); opacity: 0; }
+                50% { opacity: 1; }
+                100% { transform: translateY(100vh); opacity: 0; }
+            }
+            @keyframes berputar {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            @keyframes naikTurun {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-20px); }
+            }
+            .animasi-putar { animation: berputar 20s linear infinite; }
+            .animasi-naik { animation: naikTurun 3s ease-in-out infinite; }
+        }
+    </style>
+</head>
+<body class="font-poppins overflow-x-hidden">
+
+    <!-- HALAMAN 1: INTRO HCI -->
+    <section id="halaman1" class="min-h-screen bg-animasi relative flex flex-col items-center justify-center p-6">
+        <!-- Partikel Bergerak -->
+        <div id="partikel1" class="absolute inset-0 overflow-hidden"></div>
+
+        <div class="z-10 text-center">
+            <h1 class="font-orbitron font-black text-[clamp(5rem,15vw,9rem)] text-white text-3d text-glow mb-4 relative">
+                HCI
+                <span class="absolute -top-10 -right-10 w-20 h-20 border-4 border-white/40 rounded-full animasi-putar"></span>
+                <span class="absolute -bottom-10 -left-10 w-16 h-16 border-4 border-white/40 rounded-full animasi-putar" style="animation-direction: reverse;"></span>
+            </h1>
+            
+            <div class="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20 max-w-2xl mx-auto mb-12">
+                <p class="text-white text-lg leading-relaxed">
+                    <span class="font-orbitron font-bold text-2xl">Marga HCI</span><br>
+                    <span class="italic">"HISTORY COMMUNITY INDONESIA"</span> <br>
+                </p>
+            </div>
+        </div>
+
+        <button onclick="pindahHalaman(2)" class="relative z-10 bg-white/20 backdrop-blur-md border-2 border-white/40 text-white font-semibold px-14 py-4 rounded-full text-lg transition-all duration-300 hover:scale-110 hover:bg-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] flex items-center gap-3">
+            Lanjut <i class="fa fa-arrow-right"></i>
+        </button>
+    </section>
+
+    <!-- HALAMAN 2: ISI DATA DIRI -->
+    <section id="halaman2" class="min-h-screen hidden bg-animasi-hitam relative flex flex-col items-center justify-center p-6">
+        <!-- Partikel Bergerak -->
+        <div id="partikel2" class="absolute inset-0 overflow-hidden"></div>
+
+        <div class="w-full max-w-lg z-10">
+            <h2 class="text-center font-orbitron font-bold text-[clamp(2rem,6vw,3rem)] text-white mb-8 text-glow">Data Diri Anggota</h2>
+            
+            <form id="formData" class="bg-white/10 backdrop-blur-lg p-8 rounded-3xl border border-white/20 shadow-2xl">
+                <div class="grid gap-5">
+                    <div>
+                        <label class="block text-white/90 font-medium mb-2">Nama Lengkap</label>
+                        <input type="text" id="nama" class="w-full px-5 py-3 bg-white/10 border border-white/30 rounded-xl text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-aksen/50" placeholder="Masukkan nama kamu" required>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-white/90 font-medium mb-2">Kelas</label>
+                            <input type="text" id="kelas" class="w-full px-5 py-3 bg-white/10 border border-white/30 rounded-xl text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-aksen/50" placeholder="Contoh: TI-3A" required>
+                        </div>
+                        <div>
+                            <label class="block text-white/90 font-medium mb-2">Umur</label>
+                            <input type="number" id="umur" min="10" max="100" class="w-full px-5 py-3 bg-white/10 border border-white/30 rounded-xl text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-aksen/50" placeholder="Contoh: 19" required>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-white/90 font-medium mb-2">Status</label>
+                            <select id="status" class="w-full px-5 py-3 bg-white/10 border border-white/30 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-aksen/50" required>
+                                <option value="" class="text-gelap">Pilih Status</option>
+                                <option value="Mahasiswa" class="text-gelap">Mahasiswa</option>
+                                <option value="Pelajar" class="text-gelap">Pelajar</option>
+                                <option value="Anggota Aktif" class="text-gelap">Anggota Aktif</option>
+                                <option value="Pengurus" class="text-gelap">Pengurus</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-white/90 font-medium mb-2">Jenis Kelamin</label>
+                            <select id="kelamin" class="w-full px-5 py-3 bg-white/10 border border-white/30 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-aksen/50" required>
+                                <option value="" class="text-gelap">Pilih Kelamin</option>
+                                <option value="Laki-laki" class="text-gelap">Laki-laki</option>
+                                <option value="Perempuan" class="text-gelap">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-white/90 font-medium mb-2">Tempat Tinggal / Asal</label>
+                        <input type="text" id="tinggal" class="w-full px-5 py-3 bg-white/10 border border-white/30 rounded-xl text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-aksen/50" placeholder="Kota / Daerah" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-white/90 font-medium mb-2">Datang Dari</label>
+                        <input type="text" id="datang_dari" class="w-full px-5 py-3 bg-white/10 border border-white/30 rounded-xl text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-aksen/50" placeholder="Instansi / Komunitas Sebelumnya" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-white/90 font-medium mb-2">Alasan Masuk Marga HCI</label>
+                        <textarea id="alasan" rows="3" class="w-full px-5 py-3 bg-white/10 border border-white/30 rounded-xl text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-aksen/50" placeholder="Ceritakan alasanmu bergabung..." required></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full mt-6 bg-gradient-to-r from-ungu to-aksen text-white font-bold py-4 rounded-xl transition-all hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(139,92,246,0.5)]">
+                    Buat Kartu Identitas
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- HALAMAN 3: ID CARD & DOWNLOAD -->
+    <section id="halaman3" class="min-h-screen hidden bg-animasi relative flex flex-col items-center justify-center p-6">
+        <!-- Partikel Bergerak -->
+        <div id="partikel3" class="absolute inset-0 overflow-hidden"></div>
+
+        <h2 class="font-orbitron font-bold text-[clamp(2rem,6vw,3rem)] text-white mb-10 z-10 text-glow animasi-naik">KARTU IDENTITAS HCI</h2>
+        
+        <div id="kartuId" class="w-[360px] h-[520px] relative z-10 rounded-[2rem] overflow-hidden kartu-efek bg-gradient-to-br from-gelap/80 ke-ungu/30 border-2 border-white/20">
+            <div class="absolute top-0 left-0 w-full h-full bg-black/40"></div>
+            
+            <!-- Dekorasi Kartu -->
+            <div class="absolute -top-16 -right-16 w-32 h-32 bg-aksen/30 rounded-full blur-xl"></div>
+            <div class="absolute -bottom-16 -left-16 w-32 h-32 bg-ungu/30 rounded-full blur-xl"></div>
+            
+            <div class="relative h-full p-6 flex flex-col text-center text-white">
+                <div class="mb-6">
+                    <h3 class="font-orbitron font-black text-4xl text-glow">HCI</h3>
+                    <p class="text-white/70 text-sm tracking-widest">HISTORY COMMUNITY INDONESIA</p>
+                </div>
+
+                <div class="flex justify-center mb-5">
+                    <div class="w-24 h-24 rounded-full bg-gradient-to-r from-ungu to-aksen flex items-center justify-center border-4 border-white/50 shadow-lg">
+                        <i class="fa fa-user text-white text-5xl"></i>
+                    </div>
+                </div>
+
+                <h4 id="namaKartu" class="font-orbitron font-bold text-2xl mb-2"></h4>
+                <p id="statusKartu" class="text-white/80 text-sm mb-6"></p>
+
+                <div class="text-left space-y-2 text-sm px-4">
+                    <div class="flex justify-between border-b border-white/20 py-1">
+                        <span class="text-white/60">Kelas</span>
+                        <span id="kelasKartu" class="font-semibold"></span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/20 py-1">
+                        <span class="text-white/60">Umur</span>
+                        <span id="umurKartu" class="font-semibold"></span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/20 py-1">
+                        <span class="text-white/60">Jenis Kelamin</span>
+                        <span id="kelaminKartu" class="font-semibold"></span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/20 py-1">
+                        <span class="text-white/60">Asal</span>
+                        <span id="tinggalKartu" class="font-semibold text-right"></span>
+                    </div>
+                    <div class="border-b border-white/20 py-1">
+                        <span class="text-white/60 block mb-1">Datang Dari</span>
+                        <span id="datangDariKartu" class="font-semibold"></span>
+                    </div>
+                </div>
+
+                <div class="mt-auto pt-4">
+                    <p class="text-[10px] text-white/50 italic">"Setia, Tangguh, Berkuasa"</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 flex flex-col gap-4 w-full max-w-xs z-10">
+            <button onclick="unduhKartu()" class="bg-white/20 backdrop-blur-md border-2 border-white/40 text-white font-semibold py-3 rounded-xl transition-all hover:scale-105 hover:bg-white/30 flex items-center justify-center gap-2">
+                <i class="fa fa-download"></i> Unduh ID Card
+            </button>
+            <button onclick="pindahHalaman(4)" class="bg-gradient-to-r from-merah to-aksen text-white font-semibold py-3 rounded-xl transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(236,72,153,0.4)]">
+                Lanjut <i class="fa fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- HALAMAN 4: PENUTUP -->
+    <section id="halaman4" class="min-h-screen hidden bg-animasi-hitam relative flex flex-col items-center justify-center p-6 text-center">
+        <!-- Partikel Bergerak -->
+        <div id="partikel4" class="absolute inset-0 overflow-hidden"></div>
+
+        <div class="z-10 max-w-3xl">
+            <h2 class="font-orbitron font-black text-[clamp(2.5rem,8vw,5rem)] text-white text-glow mb-6 animasi-naik">TERIMA KASIH</h2>
+            
+            <div class="bg-white/10 backdrop-blur-lg p-8 rounded-3xl border border-white/20 shadow-2xl mb-8">
+                <p class="text-white text-lg leading-relaxed mb-4">
+                    Kamu telah resmi menjadi bagian dari <span class="font-orbitron font-bold text-aksen">Marga HCI</span>. Ingatlah selalu semboyan kita:
+                </p>
+                <p class="font-orbitron font-bold text-2xl text-white text-glow mb-4">
+                    "HISTORY COMMUNITY INDONESIA"
+                </p>
+                <p class="text-white/80">
+                    Teruslah melawan segala ancaman, jaga persaudaraan, dan junjung tinggi nama baik marga ke mana pun kamu melangkah. Sejarah kita ditulis dengan keberanian dan kesetiaan tanpa batas.
+                </p>
+            </div>
+
+            <p class="text-white/60 italic">
+                © 2026 Marga HCI• Human-Renzz Interaction
+            </p>
+        </div>
+    </section>
+
+    <!-- Library untuk Download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+        let dataPengguna = {};
+
+        // Buat Efek Partikel
+        function buatPartikel(idContainer, jumlah = 50) {
+            const container = document.getElementById(idContainer);
+            for (let i = 0; i < jumlah; i++) {
+                const partikel = document.createElement('div');
+                partikel.className = 'partikel absolute';
+                partikel.style.left = `${Math.random() * 100}%`;
+                partikel.style.top = `${Math.random() * -100}px`;
+                partikel.style.width = `${Math.random() * 8 + 2}px`;
+                partikel.style.height = partikel.style.width;
+                partikel.style.background = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2})`;
+                partikel.style.animationDelay = `${Math.random() * 5}s`;
+                partikel.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                container.appendChild(partikel);
+            }
+        }
+
+        // Pindah Halaman
+        function pindahHalaman(no) {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(`halaman${no}`).classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        // Proses Formulir
+        document.getElementById('formData').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            dataPengguna = {
+                nama: document.getElementById('nama').value,
+                kelas: document.getElementById('kelas').value,
+                umur: document.getElementById('umur').value + ' Tahun',
+                status: document.getElementById('status').value,
+                kelamin: document.getElementById('kelamin').value,
+                tinggal: document.getElementById('tinggal').value,
+                datang_dari: document.getElementById('datang_dari').value,
+                alasan: document.getElementById('alasan').value
+            };
+
+            // Masukkan ke Kartu
+            document.getElementById('namaKartu').textContent = dataPengguna.nama;
+            document.getElementById('statusKartu').textContent = dataPengguna.status;
+            document.getElementById('kelasKartu').textContent = dataPengguna.kelas;
+            document.getElementById('umurKartu').textContent = dataPengguna.umur;
+            document.getElementById('kelaminKartu').textContent = dataPengguna.kelamin;
+            document.getElementById('tinggalKartu').textContent = dataPengguna.tinggal;
+            document.getElementById('datangDariKartu').textContent = dataPengguna.datang_dari;
+
+            pindahHalaman(3);
+        });
+
+        // Unduh Kartu
+        function unduhKartu() {
+            const elemen = document.getElementById('kartuId');
+            html2canvas(elemen, {
+                scale: 4,
+                useCORS: true,
+                backgroundColor: null
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'ID-Card-KDT 401.png';
+                link.click();
+            });
+        }
+
+        // Jalankan Efek Partikel Saat Halaman Dimuat
+        window.onload = function() {
+            buatPartikel('partikel1', 60);
+            buatPartikel('partikel2', 60);
+            buatPartikel('partikel3', 60);
+            buatPartikel('partikel4', 60);
+        };
+    </script>
+</body>
+</html>
+body>
+</html>
